@@ -20,35 +20,31 @@
                             <label> Estado:</label>
                         </div>
                         <div class="inputs">
-                            <input type="text" name="nome" placeholder="seu nome aqui">
+                            <input type="text" value="<?=$_POST["nome"]?>" disabled>
 
-                            <input type="text" name="email">
+                            <input type="text" value="<?=$_POST["email"]?>" disabled>
 
-                            <input type="text" name="dataNascimento">
+                            <input type="text" name="dataNascimento" value="<?=$_POST["dataNascimento"]?>" disabled>
 
-                            <input type="text" name="login" class="width-input">
+                            <input type="text" class="width-input" value="<?=$_POST["login"]?>"disabled>
 
-                            <input type="password" name="senha" class="width-input">
-                            <select name="estado">
-                                <option value="minas">Minas Gerais</option>
-                                <option value="rio">Rio</option>
-                                <option value="sao paulo">São Paulo</option>
+                            <input type="password" class="width-input" value="<?=$_POST["senha"]?>"disabled>
+                            <select name="estado" disabled>
+                                <option value="minas" <?= $_POST["estado"] == "minas" ? "selected": ""; ?>  >Minas Gerais</option>
+                                <option value="rio" <?= $_POST["estado"] == "rio" ? "selected": ""; ?> >Rio</option>
+                                <option value="saopaulo" <?= $_POST["estado"] == "saopaulo" ? "selected": ""; ?> >São Paulo</option>
                             </select>
                         </div>
                     </div>
 
                     <br>
                     <label> Faixa etária: </label><br>
-                    <input type="radio" name="faixaEtaria" value="menorIgual">
+                    <input type="radio" name="faixaEtaria" value="menorIgual" <?= $_POST["faixaEtaria"] == "menorIgual" ? "checked": ""; ?> disabled>
                     <label>menor ou igual a 18 anos</label>
                     <br>
                     <input type="radio" name="faixaEtaria" value="maiorDeIdade">
                     <label>maior de 18 anos</label>
                 </fieldset>
-                <div class="buttons-form">
-                    <input type="reset" value="LIMPAR FORMULARIO" class="buttons">
-                    <input type="submit" value="EFETUAR CADASTRO" class="buttons">
-                </div>
             </form>
         </div>
     </body>
