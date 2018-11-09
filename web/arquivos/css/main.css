@@ -88,3 +88,14 @@ select {
 label {
     margin: 7px;
 }
+
+.error {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+.cpfInvalido {
+    margin: auto;
+    font-size: 10px;
+}
+

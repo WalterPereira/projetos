@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <body>
         <div class="form">
-            <form width="300px" method="post" action="../php/form.php">
+                <form width="300px" method="post" action="../php/form.php">
                 <fieldset>
                     <legend>Informaçoes Pessoais:</legend>
                     <div class="test">
                         <div class="labels">
                             <label> Nome Completo:</label>
                             <label> E-mail:</label>
+                            <label> CPF: </label>
                             <label> Data de Nascimento:</label>
                             <label> Login:</label>
                             <label> Senha:</label>
@@ -22,9 +23,11 @@
                         <div class="inputs">
                             <input type="text" name="nome" placeholder="seu nome aqui">
 
-                            <input type="text" name="email">
+                            <input type="text" name="email" id="email">
 
-                            <input type="text" name="dataNascimento">
+                            <input type="text" name="cpf" id="cpf" maxlength="14" onkeydown="javascript: fMasc( this, mCPF );">
+
+                            <input type="text" name="dataNascimento" maxlength="10" onkeydown="javascript: fMasc( this, mData );">
 
                             <input type="text" name="login" class="width-input">
 
@@ -46,10 +49,47 @@
                     <label>maior de 18 anos</label>
                 </fieldset>
                 <div class="buttons-form">
-                    <input type="reset" value="LIMPAR FORMULARIO" class="buttons">
-                    <input type="submit" value="EFETUAR CADASTRO" class="buttons">
+                    <button type="reset" class="buttons"> LIMPAR FORMULARIO </button>
+                    <button class="buttons" onclick="finalizar(event)"> EFETUAR CADASTRO </button>
                 </div>
             </form>
         </div>
+        <script>
+            function finalizar(e) {
+                const email = document.getElementById("email");
+                const cpf = document.getElementById("cpf");
+                if (camposNulos(email, cpf)) {
+                    (email.value == "") ? email.classList.add("error"): "";
+                    (cpf.value == "") ? cpf.classList.add("error"): "";
+                    alert("Preencha os campos destacados");
+                    e.preventDefault();
+                }
+            }
+            function camposNulos(email, cpf) {
+                return ((email.value == "") || (cpf.value == ""));
+            }
+
+            function mCPF(cpf){
+				cpf=cpf.replace(/\D/g,"")
+				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+				cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+				cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+				return cpf
+			}
+            function mData(data){
+				data=data.replace(/\D/g,"")
+				data=data.replace(/(\d{2})(\d)/,"$1/$2")
+				data=data.replace(/(\d{2})(\d)/,"$1/$2")
+				return data
+			}
+            function fMasc(objeto,mascara) {
+				obj=objeto
+				masc=mascara
+				setTimeout("fMascEx()",1)
+			}
+			function fMascEx() {
+				obj.value=masc(obj.value)
+			}
+        </script>
     </body>
 </html>
