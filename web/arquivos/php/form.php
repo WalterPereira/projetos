@@ -7,6 +7,25 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <body>
     <?php
+
+        define("Foo", "Algyna ciusa");
+
+        echo Foo;
+
+        $a = 1;
+
+        function teste() {
+            static $a= 10;
+            echo $a;
+            $a++;
+        }
+        teste();
+        teste();
+        teste();
+        teste();
+    ?>
+    <?php
+        $email = validaEmail($_POST["email"]);
         $cpf = validaCPF($_POST["cpf"]);
         function validaCPF($cpf) {
 
@@ -53,9 +72,7 @@
                 return true;
             }
         }
-    ?>
-    <?php
-        $email = validaEmail($_POST["email"]);
+        
 
         function validaEmail($email) {
             if(filter_var($email, FILTER_VALIDATE_EMAIL))
